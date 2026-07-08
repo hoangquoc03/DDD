@@ -1,25 +1,15 @@
-package org.example.ddd_microservice.entity;
+package org.example.ddd_microservice.dto;
+public class ProductResponseDTO {
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "products")
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private Double price;
-
     private Integer stockQuantity;
 
-    public Product() {
+    public ProductResponseDTO() {
     }
 
-    public Product(Long id, String name, Double price, Integer stockQuantity) {
+    public ProductResponseDTO(Long id, String name, Double price, Integer stockQuantity) {
         this.id = id;
         this.name = name;
         this.price = price;
