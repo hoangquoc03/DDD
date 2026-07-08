@@ -1,34 +1,24 @@
-package org.example.ddd_microservice.entity;
-
-import jakarta.persistence.*;
+package org.example.ddd_microservice.dto;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "orders")
-public class Order {
+public class OrderResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // Chỉ lưu ID của Customer
     private Long customerId;
-
-    // Chỉ lưu ID của Product
     private Long productId;
-
     private LocalDateTime orderDate;
-
     private Double totalAmount;
 
-    public Order() {
+    public OrderResponseDTO() {
     }
 
-    public Order(Long customerId,
-                 Long productId,
-                 LocalDateTime orderDate,
-                 Double totalAmount) {
+    public OrderResponseDTO(Long id,
+                            Long customerId,
+                            Long productId,
+                            LocalDateTime orderDate,
+                            Double totalAmount) {
+        this.id = id;
         this.customerId = customerId;
         this.productId = productId;
         this.orderDate = orderDate;
