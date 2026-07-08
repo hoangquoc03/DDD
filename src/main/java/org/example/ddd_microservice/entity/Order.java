@@ -1,4 +1,4 @@
-package org.example.ddd_microservice.dto;
+package org.example.ddd_microservice.entity;
 
 import jakarta.persistence.*;
 
