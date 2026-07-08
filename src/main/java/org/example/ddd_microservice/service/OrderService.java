@@ -5,6 +5,7 @@ import org.example.ddd_microservice.entity.Order;
 import org.example.ddd_microservice.exception.*;
 import org.example.ddd_microservice.repository.OrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 
@@ -13,8 +14,11 @@ public class OrderService {
 
     private final OrderRepository repository;
 
-    public OrderService(OrderRepository repository) {
+    private final RestTemplate restTemplate;
+
+    public OrderService(OrderRepository repository, RestTemplate restTemplate) {
         this.repository = repository;
+        this.restTemplate = restTemplate;
     }
 
     public OrderResponseDTO create(OrderRequestDTO dto) {
@@ -69,5 +73,34 @@ public class OrderService {
                 order.getTotalAmount()
         );
     }
+    public ProductDTO getProduct(Long id){
+
+        String url =
+                "http://localhost:8082/api/v1/products/" + id;
+
+        try{
+
+            return restTemplate.getForObject(
+
+                    url,
+
+                    ProductDTO.class
+
+            );
+
+        }
+
+        catch(Exception e){
+
+            throw new RuntimeException(
+
+                    "Dịch vụ sản phẩm hiện không khả dụng, vui lòng thử lại sau"
+
+            );
+
+        }
+
+    }
+
 
 }
